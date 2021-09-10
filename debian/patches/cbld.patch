@@ -1,0 +1,21 @@
+Index: grub2-2.02+dfsg1/debian/sbat.cbld.csv.in
+===================================================================
+--- /dev/null
++++ grub2-2.02+dfsg1/debian/sbat.cbld.csv.in
+@@ -0,0 +1,3 @@
++sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
++grub,1,Free Software Foundation,grub,@UPSTREAM_VERSION@,https://www.gnu.org/software/grub/
++grub.cbld,1,CBLD,grub2,@DEB_VERSION@,https://aka.ms/cbld
+Index: grub2-2.02+dfsg1/debian/rules
+===================================================================
+--- grub2-2.02+dfsg1.orig/debian/rules
++++ grub2-2.02+dfsg1/debian/rules
+@@ -132,7 +132,7 @@ endif
+ # rebuild grub, need a programmatic way to get the vendor, as it's used by build-efi-images
+ # to create the monolithic Grub image and thus is needed to create the partitions on the EFI
+ # media. Add it to the control file user metadata: XB-Efi-Vendor: $vendor
+-SB_EFI_VENDOR ?= $(shell dpkg-vendor --query vendor | tr '[:upper:]' '[:lower:]')
++SB_EFI_VENDOR=cbld
+ 
+ %:
+ 	dh $@ --with=bash_completion
